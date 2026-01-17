@@ -7,10 +7,9 @@ const {
 
 const router = express.Router()
 
-// Pending doctor requests
 router.get('/doctor-requests', auth, admin, getDoctorRequests)
 
-// Approve / Reject
 router.post('/update-doctor-status', auth, admin, updateDoctorStatus)
 
 module.exports = router
+
