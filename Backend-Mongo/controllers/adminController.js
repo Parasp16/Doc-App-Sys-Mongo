@@ -1,7 +1,6 @@
 const DoctorApply = require('../models/doctorApplyModel')
 const User = require('../models/userModel')
 
-// 1️⃣ Get all pending doctor requests
 const getDoctorRequests = async (req, res) => {
     try {
         const requests = await DoctorApply
@@ -18,7 +17,6 @@ const getDoctorRequests = async (req, res) => {
     }
 }
 
-// 2️⃣ Approve / Reject doctor request
 const updateDoctorStatus = async (req, res) => {
     try {
         const { requestId, status } = req.body
@@ -31,7 +29,6 @@ const updateDoctorStatus = async (req, res) => {
         request.status = status
         await request.save()
 
-        // Agar approve hua → user ko Doctor banao
         if (status === 'approved') {
             await User.findByIdAndUpdate(request.userId, {
                 role: 'Doctor'
@@ -53,3 +50,4 @@ module.exports = {
     getDoctorRequests,
     updateDoctorStatus
 }
+
