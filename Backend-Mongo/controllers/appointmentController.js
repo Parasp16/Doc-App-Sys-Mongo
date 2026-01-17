@@ -69,7 +69,7 @@ const updateAppointment = async (req, res) => {
         const { dateTime } = req.body
 
         const appointment = await Appointment.findOneAndUpdate(
-            { _id: id, userId: req.user.id }, // 🔐 user check
+            { _id: id, userId: req.user.id }, 
             { dateTime },
             { new: true }
         )
@@ -96,7 +96,7 @@ const deleteAppointment = async (req, res) => {
 
         const appointment = await Appointment.findOneAndDelete({
             _id: id,
-            userId: req.user.id // 🔐 user check
+            userId: req.user.id 
         })
 
         if (!appointment) {
@@ -121,7 +121,7 @@ const updateAppointmentStatus = async (req, res) => {
         const appointment = await Appointment.findOneAndUpdate(
             {
                 _id: id,
-                doctorId: req.user.id   // 🔐 doctor ownership check
+                doctorId: req.user.id   
             },
             { status },
             { new: true }
@@ -148,7 +148,7 @@ const deleteAppointmentByDoctor = async (req, res) => {
 
     const appointment = await Appointment.findOneAndDelete({
       _id: id,
-      doctorId: req.user.id   // 🔐 doctor ownership check
+      doctorId: req.user.id   
     })
 
     if (!appointment) {
@@ -170,7 +170,6 @@ const deleteAppointmentByDoctor = async (req, res) => {
 
 
 
-// ADMIN: update appointment
 const adminUpdateAppointment = async (req, res) => {
   try {
     const { id } = req.params
@@ -227,3 +226,4 @@ module.exports = {
   adminUpdateAppointment,
   adminDeleteAppointment
 }
+
