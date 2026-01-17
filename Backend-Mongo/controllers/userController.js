@@ -111,7 +111,6 @@ const updateProfileImage = async (req, res) => {
             { new: true }
         ).select('-password')
 
-        // 👇 IMPORTANT: yahin URL bana do
         if (user.imagePath) {
             user.imagePath = BASEURL + user.imagePath
         }
@@ -150,7 +149,7 @@ const getAllUsers = async (req, res) => {
     try {
         const users = await User
             .find()
-            .select('-password') // 🔐 important
+            .select('-password') 
 
         res.status(200).send({
             success: true,
@@ -165,4 +164,5 @@ const getAllUsers = async (req, res) => {
 
 
 module.exports = { register, login, getUserInfo, doctorList, updateProfileImage, getAllUsers }
+
 
